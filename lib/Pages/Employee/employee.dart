@@ -43,10 +43,11 @@ class _EmployeePageState extends State<EmployeePage> {
                 ),
                 const Spacer(),
                 CustomButton(
+                  width: 170,
                   onTap: () async {
                     _showDialog();
                   },
-                  text: 'Add Employee',
+                  text: 'Add Users',
                 ),
               ],
             ),
@@ -69,7 +70,7 @@ class _EmployeePageState extends State<EmployeePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Create Employee'),
+          title: const Text('Create User'),
           content: SingleChildScrollView(
             child: SizedBox(
               width: 400,
@@ -144,7 +145,7 @@ class _EmployeePageState extends State<EmployeePage> {
                           Get.back();
                         }
                       },
-                      text: 'Add Employee')),
+                      text: 'Add  User')),
             ),
           ],
         );

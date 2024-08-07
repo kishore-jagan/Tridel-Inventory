@@ -9,7 +9,7 @@ const inventoryPageRoute = "/inventory";
 const productsPageDisplayName = 'Products';
 const productsPageRoute = '/products';
 
-const userPageDisplayName = 'Employee';
+const userPageDisplayName = 'Users';
 const userPageRoute = '/employee';
 
 const barcodePageDisplayName = 'Bar Code';

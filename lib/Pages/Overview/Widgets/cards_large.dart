@@ -33,8 +33,8 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
       () => Row(
         children: [
           InfoCard(
-              title: "Electrical Stock",
-              value: stockCountController.electricalCount.toString(),
+              title: "GeoScience Stock",
+              value: stockCountController.geoscienceCount.toString(),
               textColor: Colors.orange,
               onTap: () {
                 menuController.changeActiveItemTo(productsPageDisplayName);
@@ -45,8 +45,8 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
             width: width / 64,
           ),
           InfoCard(
-              title: "Mechanical Stock",
-              value: stockCountController.mechanicalCount.toString(),
+              title: "GeoInformatics Stock",
+              value: stockCountController.geoinformaticsCount.toString(),
               textColor: Colors.lightGreen,
               onTap: () {
                 menuController.changeActiveItemTo(productsPageDisplayName);
@@ -57,8 +57,8 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
             width: width / 64,
           ),
           InfoCard(
-              title: "IT",
-              value: stockCountController.itCount.toString(),
+              title: "GeoEngineering",
+              value: stockCountController.geoengineeringCount.toString(),
               textColor: Colors.redAccent,
               onTap: () {
                 menuController.changeActiveItemTo(productsPageDisplayName);
@@ -69,8 +69,8 @@ class _OverviewCardsLargeScreenState extends State<OverviewCardsLargeScreen> {
             width: width / 64,
           ),
           InfoCard(
-            title: "Employees",
-            value: stockCountController.employeecount.toString(),
+            title: "Office",
+            value: stockCountController.officeCount.toString(),
             textColor: active,
             onTap: () {
               menuController.changeActiveItemTo(userPageDisplayName);

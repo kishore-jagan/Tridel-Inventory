@@ -62,7 +62,7 @@ class _CustomButtonState extends State<CustomButton> {
                   widget.icon,
                   color: isHovered ? widget.hoverColor : widget.iconColor,
                 ),
-                const SizedBox(width: 5),
+                const SizedBox(width: 10),
                 Text(
                   widget.text,
                   style: TextStyle(

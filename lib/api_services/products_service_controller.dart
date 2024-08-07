@@ -45,7 +45,7 @@ class ProductsController extends GetxController {
               .toList();
 
           apiResponse.assignAll(products);
-          // print('apiResponse : ${apiResponse}');
+          print('apiResponse : ${apiResponse}');
         } else {
           throw Exception('Products data is null');
         }
@@ -54,7 +54,7 @@ class ProductsController extends GetxController {
       }
     } catch (e) {
       error.value = e.toString();
-      print('Error fetching data: $e');
+      print('Error fetching dataa: $e');
     } finally {
       isLoading.value = false;
     }
@@ -77,7 +77,7 @@ class ProductsController extends GetxController {
         throw Exception('Failed to load data');
       }
     } catch (error) {
-      print('Error fetching data: $error');
+      print('Error fetching dataaaa: $error');
     } finally {
       isLoading(false);
     }

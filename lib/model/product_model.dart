@@ -5,7 +5,7 @@ class Product {
   final String modelNo;
   final String category;
   final String type;
-  final String status;
+  final String itemRemarks;
   final String quantity;
   final String vendorName;
   final String barCode;
@@ -19,7 +19,7 @@ class Product {
     required this.modelNo,
     required this.category,
     required this.type,
-    required this.status,
+    required this.itemRemarks,
     required this.quantity,
     required this.vendorName,
     required this.barCode,
@@ -35,7 +35,7 @@ class Product {
       modelNo: json['model_no'],
       category: json['category'],
       type: json['type'],
-      status: json['status'],
+      itemRemarks: json['item_remarks'],
       quantity: json['qty'].toString(),
       vendorName: json['vendor_name'],
       barCode: json['barcode'],

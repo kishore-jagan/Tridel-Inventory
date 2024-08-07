@@ -36,8 +36,8 @@ class _OverviewCardsMediumScreenState extends State<OverviewCardsMediumScreen> {
           Row(
             children: [
               InfoCard(
-                  title: "Electrical Stock",
-                  value: stockCountController.electricalCount.toString(),
+                  title: "GeoScience Stock",
+                  value: stockCountController.geoscienceCount.toString(),
                   textColor: Colors.orange,
                   onTap: () {
                     menuController.changeActiveItemTo(productsPageDisplayName);
@@ -48,8 +48,8 @@ class _OverviewCardsMediumScreenState extends State<OverviewCardsMediumScreen> {
                 width: width / 64,
               ),
               InfoCard(
-                  title: "Mechanical Stock",
-                  value: stockCountController.mechanicalCount.toString(),
+                  title: "GeoInformatics Stock",
+                  value: stockCountController.geoinformaticsCount.toString(),
                   textColor: Colors.lightGreen,
                   onTap: () {
                     menuController.changeActiveItemTo(productsPageDisplayName);
@@ -64,8 +64,8 @@ class _OverviewCardsMediumScreenState extends State<OverviewCardsMediumScreen> {
           Row(
             children: [
               InfoCard(
-                  title: "Vendors",
-                  value: stockCountController.vendorcount.toString(),
+                  title: "GeoEngineering",
+                  value: stockCountController.geoengineeringCount.toString(),
                   textColor: Colors.redAccent,
                   onTap: () {
                     menuController.changeActiveItemTo(barcodePageDisplayName);
@@ -76,7 +76,7 @@ class _OverviewCardsMediumScreenState extends State<OverviewCardsMediumScreen> {
                 width: width / 64,
               ),
               InfoCard(
-                title: "Employees",
+                title: "Office",
                 value: stockCountController.employeecount.toString(),
                 textColor: active,
                 onTap: () {

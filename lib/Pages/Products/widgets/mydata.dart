@@ -53,7 +53,7 @@ class MyData extends DataTableSource {
           icon: const Icon(Icons.delete),
           color: Colors.redAccent,
           onPressed: () {
-            _deleteProduct(product['id'].toString(), product["category"]);
+            _deleteProduct(product['id'].toString(), product["main_category"]);
           },
         ),
       ],

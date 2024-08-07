@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:inventory/api_services/api_config.dart';
 
 class StockCountController extends GetxController {
-  var electricalCount = ''.obs;
-  var mechanicalCount = ''.obs;
-  var itCount = ''.obs;
+  var geoscienceCount = ''.obs;
+  var geoinformaticsCount = ''.obs;
+  var geoengineeringCount = ''.obs;
+  var officeCount = ''.obs;
   var vendorcount = ''.obs;
   var employeecount = ''.obs;
 
@@ -17,9 +18,10 @@ class StockCountController extends GetxController {
         .get(Uri.parse('${ApiConfig.baseUrl}${ApiConfig.stockCount}'));
     if (response.statusCode == 200) {
       Map<String, dynamic> data = json.decode(response.body);
-      electricalCount.value = data['table1_total_rows'];
-      mechanicalCount.value = data['table2_total_rows'];
-      itCount.value = data['table3_total_rows'];
+      geoscienceCount.value = data['table1_total_rows'];
+      geoinformaticsCount.value = data['table2_total_rows'];
+      geoengineeringCount.value = data['table3_total_rows'];
+      officeCount.value = data['table4_total_rows'];
     }
   }
 

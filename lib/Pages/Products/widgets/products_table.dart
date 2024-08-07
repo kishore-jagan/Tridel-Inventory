@@ -5,6 +5,7 @@ import 'package:inventory/Widgets/custom_button.dart';
 import 'package:inventory/Widgets/custom_search_field.dart';
 import 'package:inventory/Widgets/icon_button.dart';
 import '../../../Helpers/responsiveness.dart';
+import '../../../Widgets/custom_daterange.dart';
 import '../../../api_services/products_service_controller.dart';
 import 'mydata.dart';
 
@@ -53,7 +54,7 @@ class _ProductsTableState extends State<ProductsTable> {
           children: [
             _buildFilterDropdown(
               'Category List',
-              ['Electrical', 'Mechanical', 'IT'],
+              ['Electrical', 'Mechanical', 'IT', 'Office'],
               _productsController.selectedCategory,
               (value) {
                 setState(() {
@@ -65,7 +66,7 @@ class _ProductsTableState extends State<ProductsTable> {
             const SizedBox(width: 10),
             _buildFilterDropdown(
               'Type product',
-              ['Rental', 'Assets'],
+              ['Rental', 'Assets', 'Stock'],
               _productsController.selectedType,
               (value) {
                 setState(() {
@@ -77,7 +78,7 @@ class _ProductsTableState extends State<ProductsTable> {
             const SizedBox(width: 10),
             _buildFilterDropdown(
               'Location List',
-              ['Inhouse', 'Warehouse'],
+              ['Inhouse', 'Warehouse', 'Onfield'],
               _productsController.selectedLocation,
               (value) {
                 setState(() {
@@ -92,18 +93,21 @@ class _ProductsTableState extends State<ProductsTable> {
         CustomButton(
           height: 45,
           onTap: () async {
-            final DateTimeRange? pickedDateRange = await showDateRangePicker(
+            final DateTimeRange? pickedDateRange =
+                await showDialog<DateTimeRange>(
               context: context,
-              firstDate: DateTime(2000),
-              lastDate: DateTime(2100),
-              initialDateRange: _productsController.selectedDateRange,
+              builder: (BuildContext context) {
+                return CustomDateRangePickerDialog(
+                  initialDateRange: _productsController.selectedDateRange,
+                  onDateRangeSelected: (DateTimeRange dateRange) {
+                    setState(() {
+                      _productsController.selectedDateRange = dateRange;
+                      _productsController.filterData();
+                    });
+                  },
+                );
+              },
             );
-            if (pickedDateRange != null) {
-              setState(() {
-                _productsController.selectedDateRange = pickedDateRange;
-                _productsController.filterData();
-              });
-            }
           },
           text: 'Select Date Range',
           textSize: 15,

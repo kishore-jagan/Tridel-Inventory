@@ -162,6 +162,22 @@ class _InventoryPageState extends State<InventoryPage> {
                               children: [
                                 Flexible(
                                   child: CustomDropDown(
+                                    fieldTitle: 'Main Category',
+                                    items:
+                                        inventoryController.mainCategoriesList,
+                                    val: inventoryController
+                                        .selectedMainCategory.value,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        inventoryController.selectedMainCategory
+                                            .value = newValue!;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 50),
+                                Flexible(
+                                  child: CustomDropDown(
                                       fieldTitle: 'Category',
                                       items: inventoryController.categoriesList,
                                       val: inventoryController
@@ -214,8 +230,77 @@ class _InventoryPageState extends State<InventoryPage> {
                                     child: CustomTextField(
                                         textEditingController:
                                             inventoryController
-                                                .remarksController,
+                                                .itemRemarksController,
                                         fieldTitle: 'Remarks'))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15)),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                offset: const Offset(0, 2),
+                                blurRadius: 2)
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Project Details',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 24),
+                            ),
+                            Row(
+                              children: [
+                                Flexible(
+                                    child: CustomTextField(
+                                  fieldTitle: 'Project Name',
+                                  textEditingController:
+                                      inventoryController.pNameController,
+                                  // hintText: 'Enter Product Name',
+                                )),
+                                const SizedBox(width: 50),
+                                Flexible(
+                                    child: CustomTextField(
+                                  textEditingController:
+                                      inventoryController.pNoController,
+                                  // hintText: 'Model Number',
+                                  fieldTitle: 'Project Number',
+                                )),
+                              ],
+                            ),
+                            const SizedBox(height: 10.0),
+                            Row(
+                              children: [
+                                Flexible(
+                                    child: CustomTextField(
+                                  textEditingController:
+                                      inventoryController.pPoController,
+                                  // hintText: 'Model Number',
+                                  fieldTitle: 'Purchase Order',
+                                )),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                                Flexible(
+                                    child: CustomTextField(
+                                  textEditingController:
+                                      inventoryController.pInvoiceController,
+                                  // hintText: 'Model Number',
+                                  fieldTitle: 'Invoice Number',
+                                )),
                               ],
                             ),
                           ],
@@ -309,10 +394,52 @@ class _InventoryPageState extends State<InventoryPage> {
                                 ),
                               ],
                             ),
-                            CustomTextField(
-                                textEditingController:
-                                    inventoryController.descriptionController,
-                                fieldTitle: 'Description'),
+                            Row(
+                              children: [
+                                Flexible(
+                                    child: CustomTextField(
+                                  textEditingController:
+                                      inventoryController.placeController,
+                                  // hintText: 'Model Number',
+                                  fieldTitle: 'Location',
+                                )),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                                Flexible(
+                                    child: CustomDropDown(
+                                        items: inventoryController.mosList,
+                                        val: inventoryController
+                                            .selectedMos.value,
+                                        onChanged: (newValue) {
+                                          setState(() {
+                                            inventoryController
+                                                .selectedMos.value = newValue!;
+                                          });
+                                        },
+                                        fieldTitle: 'Mode of Shipment')),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Flexible(
+                                    child: CustomTextField(
+                                  textEditingController:
+                                      inventoryController.receiversController,
+                                  // hintText: 'Model Number',
+                                  fieldTitle: 'Receiver Name',
+                                )),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                                Flexible(
+                                  child: CustomTextField(
+                                      textEditingController: inventoryController
+                                          .vendorRemarksController,
+                                      fieldTitle: 'Remarks'),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 20,
                             ),
@@ -334,21 +461,23 @@ class _InventoryPageState extends State<InventoryPage> {
                                         inventoryController
                                             .priceController.text.isNotEmpty &&
                                         inventoryController
-                                            .selectedType.value.isNotEmpty &&
-                                        inventoryController.selectedLocation
-                                            .value.isNotEmpty &&
-                                        inventoryController.selectedCategory
-                                            .value.isNotEmpty &&
+                                            .itemRemarksController
+                                            .text
+                                            .isNotEmpty &&
                                         inventoryController.vendorNameController
                                             .text.isNotEmpty &&
                                         inventoryController
+                                            .vendorRemarksController
+                                            .text
+                                            .isNotEmpty &&
+                                        inventoryController
                                             .dateController.text.isNotEmpty) {
-                                      // print("Started");
+                                      print("Started");
 
                                       await inventoryController.saveData();
                                       productsController.fetchListProducts();
 
-                                      // print("End");
+                                      print("End");
                                     } else {
                                       inventoryController.isLoading.value =
                                           false;
@@ -364,86 +493,6 @@ class _InventoryPageState extends State<InventoryPage> {
                                   }
                                 },
                                 text: "Add"),
-                            // SizedBox(
-                            //   height: 10,
-                            // ),
-                            // ElevatedButton(
-                            //   onPressed: () async {
-                            //     try {
-                            //       setState(() {
-                            //         vendorSearchKey.currentState
-                            //             ?.setSelectedVendor();
-                            //       });
-                            //       inventoryController.isLoading.value = true;
-                            //       if (inventoryController.nameController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .modelController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .serialController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .qtyController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .priceController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .selectedType.value.isNotEmpty &&
-                            //           inventoryController
-                            //               .selectedLocation.value.isNotEmpty &&
-                            //           inventoryController
-                            //               .selectedCategory.value.isNotEmpty &&
-                            //           inventoryController.descriptionController
-                            //               .text.isNotEmpty &&
-                            //           inventoryController.vendorNameController
-                            //               .text.isNotEmpty &&
-                            //           inventoryController
-                            //               .dateController.text.isNotEmpty &&
-                            //           inventoryController
-                            //               .remarksController.text.isNotEmpty) {
-                            //         // print("Started");
-
-                            //         await inventoryController.saveData();
-                            //         productsController.fetchListProducts();
-
-                            //         // print("End");
-                            //       } else {
-                            //         inventoryController.isLoading.value = false;
-                            //         print("null value handled");
-                            //         Toaster().showsToast(
-                            //             'Please fill all fields',
-                            //             Colors.red,
-                            //             Colors.white);
-                            //       }
-                            //     } catch (e) {
-                            //       print('error: $e');
-                            //       inventoryController.isLoading.value = false;
-                            //     }
-                            //   },
-                            //   style: ButtonStyle(
-                            //     backgroundColor: MaterialStateProperty.all(
-                            //         Colors
-                            //             .lightBlue), // Button background color
-                            //     padding: MaterialStateProperty.all(
-                            //         const EdgeInsets.symmetric(
-                            //             horizontal: 50,
-                            //             vertical: 15)), // Button padding
-                            //     elevation: MaterialStateProperty.all(
-                            //         3), // Button elevation
-                            //     shape: MaterialStateProperty.all<
-                            //         RoundedRectangleBorder>(
-                            //       RoundedRectangleBorder(
-                            //         borderRadius: BorderRadius.circular(
-                            //             30.0), // Button border radius
-                            //       ),
-                            //     ),
-                            //   ),
-                            //   child: const Text(
-                            //     "Add",
-                            //     style: TextStyle(
-                            //       fontSize: 18,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.white,
-                            //     ),
-                            //   ),
-                            // ),
                           ],
                         ),
                       ),

@@ -34,8 +34,8 @@ class _OverviewCardsSmallScreenState extends State<OverviewCardsSmallScreen> {
         child: Column(
           children: [
             InfoCardSmall(
-              title: "Electrical Stock",
-              value: stockCountController.electricalCount.toString(),
+              title: "GeoScience Stock",
+              value: stockCountController.geoscienceCount.toString(),
               onTap: () {
                 menuController.changeActiveItemTo(productsPageDisplayName);
                 navigationController.navigateTo(productsPageRoute);
@@ -46,8 +46,8 @@ class _OverviewCardsSmallScreenState extends State<OverviewCardsSmallScreen> {
               width: width / 64,
             ),
             InfoCardSmall(
-              title: "Mechanical Stock",
-              value: stockCountController.mechanicalCount.toString(),
+              title: "GeoInformatics Stock",
+              value: stockCountController.geoinformaticsCount.toString(),
               onTap: () {
                 menuController.changeActiveItemTo(productsPageDisplayName);
                 navigationController.navigateTo(productsPageRoute);
@@ -57,8 +57,8 @@ class _OverviewCardsSmallScreenState extends State<OverviewCardsSmallScreen> {
               width: width / 64,
             ),
             InfoCardSmall(
-              title: "Vendors",
-              value: stockCountController.vendorcount.toString(),
+              title: "GeoEngineering",
+              value: stockCountController.geoengineeringCount.toString(),
               onTap: () {
                 menuController.changeActiveItemTo(barcodePageDisplayName);
                 navigationController.navigateTo(barcodePageroute);
@@ -68,8 +68,8 @@ class _OverviewCardsSmallScreenState extends State<OverviewCardsSmallScreen> {
               width: width / 64,
             ),
             InfoCardSmall(
-              title: "Employees",
-              value: stockCountController.employeecount.toString(),
+              title: "Office",
+              value: stockCountController.officeCount.toString(),
               onTap: () {
                 menuController.changeActiveItemTo(userPageDisplayName);
                 navigationController.navigateTo(userPageRoute);
